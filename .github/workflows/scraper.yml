@@ -3,7 +3,7 @@ name: Football Scraper
 on:
   schedule:
     - cron: "0 */8 * * *"   # run every 8 hours
-  workflow_dispatch:        # allows manual run from Actions tab
+  workflow_dispatch:        # allow manual trigger
 
 jobs:
   scrape:
@@ -20,7 +20,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests beautifulsoup4 gspread oauth2client
+          pip install gspread oauth2client playwright
+          playwright install chromium
 
       - name: Run scraper
         env:
